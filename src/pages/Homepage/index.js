@@ -1,6 +1,6 @@
 /* TO DO
 - display
-- make a link button that leads to details of page. 
+- make a link button that leads to details of page. Path "/spaces/:id"
 - make pretty 
 */
 
