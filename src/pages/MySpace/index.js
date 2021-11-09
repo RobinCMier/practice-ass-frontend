@@ -24,13 +24,21 @@ export default function MySpace() {
         ) : (
           <div>
             <h2>{userSpace.title}</h2>
-            <h3>{userSpace.description}</h3>
+            <strong>{userSpace.description}</strong>
+            <br />
             <p>Your stories:</p>
+            <button>Add a story!</button>
             {userSpace.stories.map((story) => {
               return (
                 <div key={story.id}>
-                  <li>{story.name}</li>
+                  <h3>{story.name}</h3>
+                  <img
+                    src={story.imageUrl}
+                    alt="some motivation"
+                    style={({ width: "500px" }, { height: "250px" })}
+                  />
                   <p>{story.content}</p>
+                  <button>Remove this story</button>
                 </div>
               );
             })}
