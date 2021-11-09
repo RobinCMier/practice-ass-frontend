@@ -1,5 +1,5 @@
 export default function selectSpaces(reduxState) {
-  //   console.log("selector: ", reduxState.spaces);
+  console.log("selector: ", reduxState.spaces);
   return reduxState.spaces.spaces; //array
 }
 export function selectOneSpace(reduxState) {

@@ -15,6 +15,7 @@ export default (state = initialState, action) => {
       };
     }
     case "spaces/spacesAdded": {
+      console.log("this is state: ", state);
       console.log("this is reducer payload: ", action.payload);
       return {
         loading: false,
