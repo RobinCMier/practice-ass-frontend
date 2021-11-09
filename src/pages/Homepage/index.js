@@ -1,6 +1,5 @@
 /* TO DO
-- display
-- make a link button that leads to details of page. Path "/spaces/:id"
+- fix the extra when rerendering. Offset?
 - make pretty 
 */
 
@@ -19,8 +18,7 @@ export default function Homepage() {
   console.log("selectSpace space:", allSpaces); //returns array
   useEffect(() => {
     dispatch(fetchSpaces);
-  }, []);
-  //display: - spaces title and description, with button.
+  }, [dispatch]);
 
   return (
     <div>

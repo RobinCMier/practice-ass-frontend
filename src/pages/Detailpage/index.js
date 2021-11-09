@@ -40,7 +40,7 @@ export default function Detailpage() {
                 <h2>{story.name}</h2>
                 <img
                   src={story.imageUrl}
-                  alt="story picture"
+                  alt="something that symbolizes the story"
                   style={({ width: "500px" }, { height: "250px" })}
                 />
                 <p>{story.content}</p>

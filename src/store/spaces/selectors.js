@@ -1,6 +1,6 @@
 export default function selectSpaces(reduxState) {
   //   console.log("selector: ", reduxState.spaces);
-  return reduxState.spaces.spaces;
+  return reduxState.spaces.spaces; //array
 }
 export function selectOneSpace(reduxState) {
   const spaceDetails = reduxState.spaces.spaceDetails; //is an object

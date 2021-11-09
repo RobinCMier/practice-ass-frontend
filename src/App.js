@@ -15,12 +15,13 @@ import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Homepage from "./pages/Homepage";
 import Detailpage from "./pages/Detailpage";
+import MySpace from "./pages/MySpace";
 
-const Home = () => (
-  <Jumbotron>
-    <h1>Home</h1>
-  </Jumbotron>
-);
+// const Home = () => (
+//   <Jumbotron>
+//     <h1>Home</h1>
+//   </Jumbotron>
+// );
 const Other = () => (
   <Jumbotron>
     <h1>Other</h1>
@@ -43,7 +44,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route exact path="/spaces/:id" component={Detailpage} />
-        <Route path="/other" component={Other} />
+        <Route path="/myspace" component={MySpace} />
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
       </Switch>
