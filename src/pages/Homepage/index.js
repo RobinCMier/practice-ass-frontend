@@ -7,6 +7,7 @@
 //tool imports
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 //components and function imports
 import selectSpace from "../../store/spaces/selectors";
@@ -30,7 +31,9 @@ export default function Homepage() {
             <div>
               <h2 key={space.id}>{space.title}</h2>
               <p>{space.description}</p>
-              <button>Visit space</button>
+              <Link to={`/spaces/${space.id}`}>
+                <button>Visit space</button>
+              </Link>
             </div>
           );
         })}

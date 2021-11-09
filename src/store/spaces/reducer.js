@@ -21,6 +21,10 @@ export default (state = initialState, action) => {
         spaces: [...state.spaces, ...action.payload],
       };
     }
+    case "spaces/oneSpaceAdded": {
+      console.log("reducer oneSpace payload:", action.payload);
+      return { ...state, spaceDetails: action.payload };
+    }
     default:
       return state;
   }

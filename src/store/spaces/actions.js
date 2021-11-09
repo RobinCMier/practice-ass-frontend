@@ -13,6 +13,10 @@ import axios from "axios";
 //         payload: ifYouNeed
 //     }
 // }
+
+//misc
+const API_URL = "http://localhost:4000/spaces";
+
 export function startLoading() {
   return {
     type: "spaces/startLoading",
@@ -25,13 +29,40 @@ export function spacesAdded(data) {
     payload: data,
   };
 }
+export function oneSpaceAdded(data) {
+  console.log("action creator oneSpace, data: ", data);
+  return {
+    type: "spaces/oneSpaceAdded",
+    payload: data,
+  };
+}
 
 //THUNKs
-const API_URL = "http://localhost:4000/spaces";
+//get all spaces
 
 export async function fetchSpaces(dispatch, getState) {
   dispatch(startLoading);
-  const res = await axios.get(API_URL);
-  console.log("actions data spaces: ", res.data); //is array with spaces as objects
-  dispatch(spacesAdded(res.data));
+  try {
+    const res = await axios.get(API_URL);
+    console.log("actions data spaces: ", res.data); //is array with spaces as objects
+    dispatch(spacesAdded(res.data));
+  } catch (e) {
+    console.log(`Something went wrong in fetchSpaces: ${e}`);
+  }
+}
+
+//get space by id and also all its stories
+export function fetchOneSpaceStories(id) {
+  console.log("function fetchOnespace is called");
+  return async function thunk(dispatch, getState) {
+    dispatch(startLoading);
+    try {
+      console.log(`${API_URL}${id}`);
+      const res = await axios.get(`${API_URL}/${id}`);
+      console.log(res.data);
+      dispatch(oneSpaceAdded(res.data));
+    } catch (e) {
+      console.log(`Something went wrong at fetchOneSpace: ${e}`);
+    }
+  };
 }
