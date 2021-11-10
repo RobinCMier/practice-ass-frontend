@@ -6,6 +6,16 @@ import { useHistory, Link } from "react-router-dom";
 import { selectUser, selectUserSpace } from "../../store/user/selectors";
 import { selectToken } from "../../store/user/selectors";
 //function
+/*TO DO: Remove story button removes story from DB
+- make endpoint that on request removes story from DB (don't forget to re-migrate)
+- make action that first requests the delete, then requests to fetch the updated info from DB
+  to put in redux store => put in dispatch the id of space as spaceId in URL. 
+- "/:spaceId/story/:storyId" -> you'll get the spaceId and storyId from mySpace as arguments. So wrap around thunk.
+- you will get back an empty array as a response. do sth with conditional formatting.
+- button OnClick dispatch this action. 
+- Selector that is already here should do the updating already, but check this first.
+
+*/
 export default function MySpace() {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -34,7 +44,7 @@ export default function MySpace() {
             <strong>{space.description}</strong>
             <br />
             <p>Your stories:</p>
-            <button>Add a story!</button>
+            <button>Post a cool story bro</button>
             {!space.stories ? (
               "You don't have stories yet!"
             ) : (
