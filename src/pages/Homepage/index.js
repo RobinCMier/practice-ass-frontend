@@ -24,17 +24,23 @@ export default function Homepage() {
     <div>
       <h1>Spaces</h1>
       <div>
-        {allSpaces.map((space) => {
-          return (
-            <div>
-              <h2 key={space.id}>{space.title}</h2>
-              <p>{space.description}</p>
-              <Link to={`/spaces/${space.id}`}>
-                <button>Visit space</button>
-              </Link>
-            </div>
-          );
-        })}
+        {!allSpaces ? (
+          "Loading spaces.."
+        ) : (
+          <div>
+            {allSpaces.map((space) => {
+              return (
+                <div>
+                  <h2 key={space.id}>{space.title}</h2>
+                  <p>{space.description}</p>
+                  <Link to={`/spaces/${space.id}`}>
+                    <button>Visit space</button>
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );
