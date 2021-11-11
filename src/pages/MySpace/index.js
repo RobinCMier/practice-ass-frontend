@@ -5,9 +5,10 @@ import { useHistory, Link } from "react-router-dom";
 //components and function imports
 import { selectUser, selectUserSpace } from "../../store/user/selectors";
 import { selectToken } from "../../store/user/selectors";
+import { deleteStory } from "../../store/user/actions";
 //function
 /*TO DO: Remove story button removes story from DB
-- make endpoint that on request removes story from DB (don't forget to re-migrate)
+V- make endpoint that on request removes story from DB (don't forget to re-migrate)
 - make action that first requests the delete, then requests to fetch the updated info from DB
   to put in redux store => put in dispatch the id of space as spaceId in URL. 
 - "/:spaceId/story/:storyId" -> you'll get the spaceId and storyId from mySpace as arguments. So wrap around thunk.
@@ -21,10 +22,19 @@ export default function MySpace() {
   const history = useHistory();
   const user = useSelector(selectUser); //is an object
   const space = user.space; //object
+  const spaceId = space.id;
   const token = user.token; // string
   console.log("what is user? ", user);
   console.log("what is space? ", space);
   console.log("what is token? ", token);
+  console.log("what is spaceId? ", spaceId);
+  function remove(event) {
+    console.log("hi");
+    event.preventDefault();
+
+    deleteStory(spaceId);
+  }
+
   useEffect(() => {
     if (token == null) {
       console.log("Myspace: There is no token");
@@ -44,7 +54,10 @@ export default function MySpace() {
             <strong>{space.description}</strong>
             <br />
             <p>Your stories:</p>
-            <button>Post a cool story bro</button>
+            <Link to={`/story/form/${spaceId}`}>
+              <button>Post a cool story bro</button>
+            </Link>
+
             {!space.stories ? (
               "You don't have stories yet!"
             ) : (
@@ -59,7 +72,7 @@ export default function MySpace() {
                         style={({ width: "500px" }, { height: "250px" })}
                       />
                       <p>{story.content}</p>
-                      <button>Remove this story</button>
+                      <button onClick={remove}>Remove this story</button>
                     </div>
                   );
                 })}
