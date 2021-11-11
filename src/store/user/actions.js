@@ -12,6 +12,7 @@ export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const TOKEN_STILL_VALID = "TOKEN_STILL_VALID";
 export const LOG_OUT = "LOG_OUT";
 
+//ACTION CREATORS
 const loginSuccess = (userWithToken) => {
   return {
     type: LOGIN_SUCCESS,
@@ -26,6 +27,8 @@ const tokenStillValid = (userWithoutToken) => ({
 
 export const logOut = () => ({ type: LOG_OUT });
 
+//THUNKS AND CO
+//sign up
 export const signUp = (name, email, password) => {
   return async (dispatch, getState) => {
     dispatch(appLoading());
@@ -52,7 +55,7 @@ export const signUp = (name, email, password) => {
     }
   };
 };
-
+//log in
 export const login = (email, password) => {
   return async (dispatch, getState) => {
     dispatch(appLoading());
@@ -82,6 +85,7 @@ export const login = (email, password) => {
   };
 };
 
+//check token
 export const getUserWithStoredToken = () => {
   return async (dispatch, getState) => {
     // get token from the state
@@ -114,3 +118,24 @@ export const getUserWithStoredToken = () => {
     }
   };
 };
+
+//delete a story
+/*TO DO
+ make action that first requests the delete, then requests to fetch the updated info from DB
+  to put in redux store => put in dispatch the id of space as spaceId in URL. 
+- "/:spaceId" -> you'll get the spaceId and storyId from mySpace as arguments. So wrap around thunk.
+- you will get back an empty array as a response. do sth with conditional formatting.
+*/
+
+export function deleteStory(storyId) {
+  return async function thunk(dispatch, getState) {
+    try {
+      console.log("Async thunk is called!");
+      console.log(` request URL is ${apiUrl}/spaces/${storyId}`);
+      const res = await axios.delete(`${apiUrl}/spaces/${storyId}`);
+      console.log(res);
+    } catch (e) {
+      console.log(`Something went wrong when deleting: ${e}`);
+    }
+  };
+}
