@@ -126,12 +126,16 @@ export const getUserWithStoredToken = () => {
 - "/:spaceId" -> you'll get the spaceId and storyId from mySpace as arguments. So wrap around thunk.
 - you will get back an empty array as a response. do sth with conditional formatting.
 */
-export function deleteStory(id) {
-  console.log("delete space with id: ", id);
+
+export function deleteStory(storyId) {
   return async function thunk(dispatch, getState) {
-    console.log("async thunk is called to delete");
-    console.log(`what is ${apiUrl}/spaces/${id}`);
-    // const res = await axios.delete(`${apiUrl}/spaces/${id}`);
-    // console.log("what is the res? ", res);
+    try {
+      console.log("Async thunk is called!");
+      console.log(` request URL is ${apiUrl}/spaces/${storyId}`);
+      const res = await axios.delete(`${apiUrl}/spaces/${storyId}`);
+      console.log(res);
+    } catch (e) {
+      console.log(`Something went wrong when deleting: ${e}`);
+    }
   };
 }

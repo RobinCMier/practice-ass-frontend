@@ -16,7 +16,6 @@ import Login from "./pages/Login";
 import Homepage from "./pages/Homepage";
 import Detailpage from "./pages/Detailpage";
 import MySpace from "./pages/MySpace";
-import Storypage from "./pages/Storypage";
 
 // const Home = () => (
 //   <Jumbotron>
@@ -45,7 +44,6 @@ function App() {
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route exact path="/spaces/:id" component={Detailpage} />
-        <Route exact path="/story/form/:id" component={Storypage} />
         <Route path="/myspace" component={MySpace} />
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
