@@ -76,7 +76,7 @@ export default function MySpace() {
             <p>Your stories:</p>
             {token ? (
               <div>
-                <button>Edit your space!</button>
+                <button onClick={()=> seteditspace(true)}>Edit your space!</button>
                 <button onClick={() => setpostform(true)}>
                   Post a cool story bro
                 </button>
